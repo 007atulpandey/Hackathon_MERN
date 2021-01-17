@@ -7,6 +7,8 @@ import {BrowserRouter,Route,Switch,useHistory} from 'react-router-dom'
 import AddEmployee from './authentication/AddEmployee';
 import Candidates from './checking_props/candidates' 
 import ListCandidates from './authentication/ListCandidates'
+import Bonus from './authentication/Bonus'
+import Leaves from './authentication/Leaves'
 import Dashboard from './Detail/dashboard';
 import { reducer ,initialState } from './reducer/userReducer'
 
@@ -30,7 +32,6 @@ const Routing = ()=>{
       <Home />
       </Route>
       <Route path="/signin">
-
         <Navbar />
         <Login />
       </Route>
@@ -45,6 +46,14 @@ const Routing = ()=>{
       <Route exact path="/dashboard">
       <Navbar />
         <Dashboard />
+      </Route>
+      <Route exact path="/leaves">
+      <Navbar/>
+      <Leaves data={Candidates}/>
+      </Route>
+      <Route exact path="/bonus">
+       <Navbar/>
+      <Bonus data={Candidates}/>
       </Route>
      {/*  
       <Route path="/create">
