@@ -1,17 +1,40 @@
-import React from 'react' 
+import React, { useContext } from 'react' 
 import { Link,useHistory} from 'react-router-dom'
 import M from 'materialize-css' 
 import  './login-style.css'
+import {UserContext} from '../App'
 const Login =()=>{
 	
+	const { state , dispatch } = useContext( UserContext) ;
 	const history = useHistory();
-	function login (e){
+	// function login (e){
 		
-		const handle = document.getElementById("handle");
-		localStorage.setItem('handle',handle.value);
-        history.push('/dashboard');
+	// 	const handle = document.getElementById("handle");
+	// 	const email = document.getElementById("email");
+	// 	localStorage.setItem('handle',handle.value);
+	// 	localStorage.setItem('email',email.value);
+    //     history.push('/dashboard');
 
+	// }
+    	
+    const login  = async (e)=> {
+       e.preventDefault();
+	   const handle = document.getElementById("handle");
+	   const email = document.getElementById("email");
+	   localStorage.setItem('handle',handle.value);
+	   localStorage.setItem('email',email.value);
+	   const key = "https://codeforces.com/api/user.info?handles=" +handle.value;
+	   
+	   const allData = await fetch (key); 
+	   const finalData = await allData.json () ;
+	   console.log( finalData.result[ 0]);
+	   await dispatch ( { type : "USER" , payload : finalData.result[ 0] }) 
+	   await history.push('/dashboard');
+	   
+	   // setPassword ( data.password);
 	}
+
+
 	function SignUp(){
 		const signUpButton = document.getElementById('signUp');
   		const signInButton = document.getElementById('signIn');
@@ -43,7 +66,7 @@ const Login =()=>{
 	<div class="form-container sign-in-container">
 		<form >
 			<h1>Sign in</h1>
-			<input  name="email" type="email" placeholder="Email" />
+			<input id = "email"  name="email" type="email" placeholder="Email" />
 			<input id= "handle" name="password" type="text" placeholder="Handle" />
 			<Link to="/">Forgot your password?</Link>
 			<button onClick = { login }>Sign Ins</button>

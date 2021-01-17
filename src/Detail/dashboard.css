@@ -1,6 +1,5 @@
 .main{
-    height : 100% ;
-    width:100wh;
+   
     background: rgb(82, 68, 90) ;
     align-content: center;
     justify-content: center;
@@ -37,4 +36,16 @@
     width : 300px ;
     border-radius:  30px ;
 
+}
+form {
+   
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    height: max-content;
+
+}
+
+.container {
+    height: max-content !important;
+    overflow: visible;
 }
