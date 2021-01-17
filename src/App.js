@@ -20,7 +20,14 @@ const Routing = ()=>{
   useEffect(()=>{
     const user = localStorage.getItem("handle") 
     if(user){
-      dispatch({type:"USER",payload:user})
+      const key = "https://codeforces.com/api/user.info?handles=" +user;
+     fetch(key)
+     .then( data => data.json())
+     .then ( data =>{
+       const userData = data.result[0] ;
+       dispatch( {type :"USER" , payload : userData});
+     })
+     
     }else{
            history.push('/signin')
     }

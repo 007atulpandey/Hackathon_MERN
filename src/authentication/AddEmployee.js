@@ -1,20 +1,23 @@
-import React from 'react' 
+import React, { useState } from 'react' 
 import { Link,useHistory} from 'react-router-dom'
 import M from 'materialize-css' 
 import  './login-style.css'
 
 const AddEmployee =()=>{
 
+	const [ salary  , setSalary] = useState("0");
+	const salaries = { "volvo" : "1000"};
     function submit (e) {
 	    e.preventDefault();
 		const name = document.querySelectorAll("#name");
 		const email = document.querySelectorAll( "#email");
 		const password = document.querySelectorAll("#password");
 		const repeat = document.querySelectorAll("#confirm");
-        if( password != repeat)  {
+        if( password.value != repeat.value)  {
 			M.toast({html:  'Password Not Matched!!!!!!!' });
 		}
 		else {
+			M.toast({html:"Candidate added successfully",classes:"#43a047 green darken-1"})
 			console.log("you'r successful personalle")
 		}
 
@@ -29,9 +32,15 @@ const AddEmployee =()=>{
 			<h1>Create Account</h1>
             <input class="form-control" id="name" placeholder="Full Name" name="name" type="text" required="true" />
 			<input class="form-control" id="email" placeholder="E-mail" name="email" type="email" required="true" />
+			<input class="form-control" id="role" placeholder="Role " name="role" type="text" required="true" />
             <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" placeholder="Mobile Number" maxlength="10" pattern="[0-9]{10}" required="true"/>
-            <input class="form-control" id="password" placeholder="Password" name="password" type="password"  required="true"/>
-            <input type="password" class="form-control" id="confirm" name="repeatpassword" placeholder="Repeat Password" required="true"/>
+			{/* <select name="cars" id="cars" onChange = { ( e)=> setSalary(salaries[e.target.value]) }>
+  			  <option value="volvo">Volvo</option>
+  			  <option value="saab">Saab</option>
+  			  <option value="opel">Opel</option>
+  			  <option value="audi">Audi</option>
+  			</select>
+		    <input type ="text" value = {salary}  /> */}
             <button onClick = { submit} >Sign Up</button>
 		</form>
 	 </div>
