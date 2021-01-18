@@ -1,4 +1,4 @@
-import React, { useContext } from 'react' 
+import React, { useContext, useState } from 'react' 
 import { Link,useHistory} from 'react-router-dom'
 import M from 'materialize-css' 
 import  './login-style.css'
@@ -7,6 +7,7 @@ const Login =()=>{
 	
 	const { state , dispatch } = useContext( UserContext) ;
 	const history = useHistory();
+	
 	// function login (e){
 		
 	// 	const handle = document.getElementById("handle");
@@ -34,7 +35,7 @@ const Login =()=>{
 	   // setPassword ( data.password);
 	}
 
-
+  
 	function SignUp(){
 		const signUpButton = document.getElementById('signUp');
   		const signInButton = document.getElementById('signIn');
