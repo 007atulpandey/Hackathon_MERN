@@ -17,6 +17,7 @@ const Login =()=>{
     //     history.push('/dashboard');
 
 	// }
+
     	
     const login  = async (e)=> {
        e.preventDefault();
@@ -58,8 +59,10 @@ const Login =()=>{
 	<div class="form-container sign-up-container">
 		<form >
 		<h1>Sign in</h1>
+		
 			<input  name="email" type="email" placeholder="Email" />
 			<input name="password" type="password" placeholder="Password" />
+			
 			<Link to="/">Forgot your password?</Link>
 			<button type="submit" value="login" name="login">Sign In</button>
 		</form>

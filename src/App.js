@@ -11,7 +11,7 @@ import Bonus from './authentication/Bonus'
 import Leaves from './authentication/Leaves'
 import Dashboard from './Detail/dashboard';
 import { reducer ,initialState } from './reducer/userReducer'
-
+import Signin from './authentication/Login1'
 export const UserContext = createContext();
 
 const Routing = ()=>{
@@ -43,9 +43,13 @@ const Routing = ()=>{
         <Login />
       </Route>
       <Route path="/addemployee">
+        <Navbar />
+        <Signin />
+      </Route>
+      {/* <Route path="/addemployee">
       <Navbar />
         <AddEmployee />
-      </Route>
+      </Route> */}
       <Route path="/candidates">
       <Navbar />
         <ListCandidates  data = { Candidates}/>
