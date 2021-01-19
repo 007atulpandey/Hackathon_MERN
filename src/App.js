@@ -9,6 +9,7 @@ import Candidates from './checking_props/candidates'
 import ListCandidates from './authentication/ListCandidates'
 import Bonus from './authentication/Bonus'
 import Leaves from './authentication/Leaves'
+import Payroll from './authentication/Payroll'
 import Dashboard from './Detail/dashboard';
 import { reducer ,initialState } from './reducer/userReducer'
 
@@ -54,6 +55,10 @@ const Routing = ()=>{
       <Route exact path="/bonus">
        <Navbar/>
       <Bonus data={Candidates}/>
+      </Route>
+        <Route exact path="/payroll">
+      <Navbar/>
+      <Payroll data={Candidates}/>
       </Route>
      {/*  
       <Route path="/create">

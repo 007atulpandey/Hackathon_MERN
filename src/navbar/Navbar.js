@@ -39,6 +39,7 @@ const Navbar =()=>{
      
      <li><Link to ="/leaves" >  <i class="material-icons">chat_bubble</i>  Leaves </Link></li>
      <li><Link to ="/bonus" > <i class="material-icons">attach_money</i>Bonus </Link></li>
+     <li><Link to ="/payroll" > <i class="material-icons">attach_money</i> Payroll </Link></li>
      <li><Link to="/candidates"><i class="material-icons">account_circle</i> Candidates</Link></li>
      <li><Link to="badges.html"> <i class="material-icons">do_not_disturb</i> Generate Report</Link></li>
      <li><button onClick = { ()=>{ localStorage.clear() ; history.push('/signin')} }>  Logout</button></li>
