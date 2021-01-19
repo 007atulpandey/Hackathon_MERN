@@ -1,54 +1,51 @@
-import React , { useEffect , useState }  from 'react'
+import React , { useEffect , useState, useContext }  from 'react'
 import './dashboard.css'
+import { useHistory} from 'react-router-dom' 
 
+import {UserContext} from '../App';
 
 
 function Dashboard(){
 
-     const [ data , setData ] = useState([ ]) ;
-
-     useEffect( () =>{
-         getData (); 
-     }, []);
-
-     const getData  = async ()=> {
-        const key = "https://codeforces.com/api/user.info?handles=" + localStorage.getItem('handle');
-        
-        const allData = await fetch (key); 
-        const finalData = await allData.json () ;
-        console.log( finalData.result[ 0]);
-        setData ( finalData.result[ 0]) ; 
-     }
-    
-     return ( 
+     const {state , dispatch }= useContext( UserContext) ;
+     const [ name , setName ]= useState ("") ;
+     const [ email , setEmail] = useState ("") ;
+     const [ password , setPassword ] = useState("");
+     const [mobile , setMobile] = useState("") ;
+     
+     useEffect( ()=>{
+       setName ( state.firstName +" "+ state.lastName) ;
+       setEmail( localStorage.getItem( 'email'));
+       setMobile( state.maxRating) ;
+       
+     },[])
+      return ( 
+       
        <div className = "main">
-             
+
              <div class="card welcome"  >
                <div class="card-body">
                  <h3 class="card-title hello" >Welcome to Dashboard</h3>
-                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                 <a href="#" class="btn btn-primary">Go somewhere</a>
                </div>
              </div>
-             <div class="card body"  >
-               <div class="card-body">
-                 <h3 class="card-title hello" >Welcome to Dashboard</h3>
-                 <div className = "row mt-4"> 
-                 <div className="col-md-6 col-sm-12 center " >  
-                 <img class="card-img-top image" src={"https:"+data.avatar} alt="Card image cap"/>
-                </div >
-                <div className="col-md-6 col-sm-12 left" >  
-                 < h5 class="card-text " style = { { "font-family":"Poppins"}}> { data.firstName +" "+data.lastName }</ h5>
-                 < h5 class="card-text " style = { { "font-family":"Poppins"}}> { data.country  }</ h5>
-                 < h5 class="card-text " style = { { "font-family":"Poppins"}}> { data.friendOfCount}</ h5>
-                 < h5 class="card-text " style = { { "font-family":"Poppins"}}> { data.handle }</ h5>
-                 < h5 class="card-text " style = { { "font-family":"Poppins"}}> { data.maxRank }</ h5>
-                 < h5 class="card-text " style = { { "font-family":"Poppins"}}> { data.maxRating }</ h5>
-                 < h5 class="card-text " style = { { "font-family":"Poppins"}}> { data.organization }</ h5> 
-                 </div>
-                 </ div > 
-                 
-               </div>
+             <div class="container"  >
+              
+               <div >
+		                <form >
+		                	<h1>Change Account Details </h1>
+                            <input   id="name" placeholder="Full Name" name="name" type="text" required="true" value = {name } onChange = { (e ) =>  setName( e.target.value)} />
+		                	<input   id="email" placeholder="E-mail" name="email" type="email" required="true"   value = {email} onChange ={ ( e) => setEmail ( e.target.value)} />
+                            <input type="text"   id="mobilenumber" name="mobilenumber" placeholder="Mobile Number" maxlength="10" pattern="[0-9]{10}" required="true" value = { mobile } onChange = { (e)=> setMobile( e.target.value)} />
+                            <input   id="password" placeholder="Password" name="password" type="text"  required="true" value = { password}  onChange = { (e ) => setPassword( e.target .value)}/>
+                            <input type="password"   id="confirm" name="repeatpassword" placeholder="Repeat Password" required="true"/>
+                            <input type="text"   id="roll" value = { state.rank}  required="true"/>
+                            
+                            <input type="text"   id="salary" value = { state.maxRating}required="true"/>
+
+                            <button className ="btn-success" > Change state </button>
+		                </form>
+            	 </div>
+
              </div>
             
 

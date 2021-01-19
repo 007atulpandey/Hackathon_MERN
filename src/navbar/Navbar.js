@@ -1,14 +1,17 @@
-import React , { useEffect }from 'react' ;
+import React , { useEffect, useContext }from 'react' ;
 import M from 'materialize-css'
 import "./Nav.css"
 import { Link , useHistory  } from 'react-router-dom'; 
+import {UserContext} from '../App' 
 // import GavelRoundedIcon from '@material-ui/icons/GavelRounded';
 const Navbar =()=>{
-
+   
+  const { state ,dispatch } = useContext ( UserContext) ;
+  
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems,'left');
-  });
+  }); 
    
   useEffect( ( ) => {
     nav_data( localStorage.getItem('handle'));
@@ -42,7 +45,7 @@ const Navbar =()=>{
      <li><Link to ="/payroll" > <i class="material-icons">attach_money</i> Payroll </Link></li>
      <li><Link to="/candidates"><i class="material-icons">account_circle</i> Candidates</Link></li>
      <li><Link to="badges.html"> <i class="material-icons">do_not_disturb</i> Generate Report</Link></li>
-     <li><button onClick = { ()=>{ localStorage.clear() ; history.push('/signin')} }>  Logout</button></li>
+     <li><button onClick = { ()=>{ localStorage.clear() ; history.push('/signin') ; dispatch({type:"CLEAR"})} }>  Logout</button></li>
      {/* <li><a href="badges.html">SIGNUP</a></li> */}
      </ div >
     );

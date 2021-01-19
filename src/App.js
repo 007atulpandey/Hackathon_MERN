@@ -12,7 +12,7 @@ import Leaves from './authentication/Leaves'
 import Payroll from './authentication/Payroll'
 import Dashboard from './Detail/dashboard';
 import { reducer ,initialState } from './reducer/userReducer'
-
+import Signin from './authentication/Login1'
 export const UserContext = createContext();
 
 const Routing = ()=>{
@@ -21,7 +21,14 @@ const Routing = ()=>{
   useEffect(()=>{
     const user = localStorage.getItem("handle") 
     if(user){
-      dispatch({type:"USER",payload:user})
+      const key = "https://codeforces.com/api/user.info?handles=" +user;
+     fetch(key)
+     .then( data => data.json())
+     .then ( data =>{
+       const userData = data.result[0] ;
+       dispatch( {type :"USER" , payload : userData});
+     })
+     
     }else{
            history.push('/signin')
     }
@@ -37,9 +44,13 @@ const Routing = ()=>{
         <Login />
       </Route>
       <Route path="/addemployee">
+        <Navbar />
+        <Signin />
+      </Route>
+      {/* <Route path="/addemployee">
       <Navbar />
         <AddEmployee />
-      </Route>
+      </Route> */}
       <Route path="/candidates">
       <Navbar />
         <ListCandidates  data = { Candidates}/>
