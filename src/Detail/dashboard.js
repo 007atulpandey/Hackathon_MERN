@@ -14,17 +14,18 @@ function Dashboard(){
      const [mobile , setMobile] = useState("") ;
      
      useEffect( ()=>{
-       setName ( state.firstName +" "+ state.lastName) ;
+       console.log( state) ;
+       setName ( state.name) ;
        setEmail( localStorage.getItem( 'email'));
-       setMobile( state.maxRating) ;
+       setMobile( state.password) ;
        
      },[])
       return ( 
        
        <div className = "main">
 
-             <div class="card welcome"  >
-               <div class="card-body">
+             <div class="card welcome w-100"  >
+               <div class="card-body w-100 center">
                  <h3 class="card-title hello" >Welcome to Dashboard</h3>
                </div>
              </div>

@@ -13,21 +13,16 @@ import Payroll from './authentication/Payroll'
 import Dashboard from './Detail/dashboard';
 import { reducer ,initialState } from './reducer/userReducer'
 import Signin from './authentication/Login1'
+import EmployeeDetail from './Detail/employee_detail'
 export const UserContext = createContext();
 
 const Routing = ()=>{
   const history = useHistory()
   const {state,dispatch} = useContext(UserContext)
   useEffect(()=>{
-    const user = localStorage.getItem("handle") 
+    const user = JSON.parse(localStorage.getItem("user"))
     if(user){
-      const key = "https://codeforces.com/api/user.info?handles=" +user;
-     fetch(key)
-     .then( data => data.json())
-     .then ( data =>{
-       const userData = data.result[0] ;
-       dispatch( {type :"USER" , payload : userData});
-     })
+        dispatch({type:"USER",payload:user})
      
     }else{
            history.push('/signin')
@@ -51,7 +46,7 @@ const Routing = ()=>{
       <Navbar />
         <AddEmployee />
       </Route> */}
-      <Route path="/candidates">
+      <Route exact path="/candidates">
       <Navbar />
         <ListCandidates  data = { Candidates}/>
       </Route>
@@ -67,10 +62,15 @@ const Routing = ()=>{
        <Navbar/>
       <Bonus data={Candidates}/>
       </Route>
-        <Route exact path="/payroll">
+      <Route exact path="/payroll">
       <Navbar/>
       <Payroll data={Candidates}/>
       </Route>
+      <Route exact path="/hr/:hrId/employees/:empId">
+      <Navbar/>
+      <EmployeeDetail />
+      </Route>
+      
      {/*  
       <Route path="/create">
         <CreatePost/>

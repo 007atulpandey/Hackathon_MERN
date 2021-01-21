@@ -5,8 +5,50 @@ import  './login1.css'
 import {UserContext} from '../App'
 const Signin =()=>{
 	
-	const { state , dispatch } = useContext( UserContext) ;
+	
 	const history = useHistory();
+	const { state , dispatch } = useContext(UserContext);
+	const [salary , setSalary] = useState("");
+	const [email , setEmail] = useState("");
+	const password = "12345678";
+	const [ role , setRole] = useState("");
+	const team = state.name;
+    const [ name , setName] = useState("");
+    function submit (e) {
+		e.preventDefault();
+        console.log( state) ;
+        fetch(`hr/`+state._id+`/add-employee`,{
+            method:"post",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                password,
+				email,
+				name ,
+				salary,
+				role ,
+				team,
+
+            })
+        }).then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+           if(data.error){
+              M.toast({html: data.error,classes:"#c62828 red darken-3"})
+           }
+           else{
+			   
+			history.push('/addemployee')
+			console.log( "success");
+           }
+        }).catch(err=>{
+            console.log(err)
+        })
+	}  
+
+
+
     useEffect( ( ) =>{
     const labels = document.querySelectorAll(".form-group label");
 
@@ -20,23 +62,6 @@ const Signin =()=>{
             .join("");
     });
     } ,[]);
-    
-    const login  = async (e)=> {
-       e.preventDefault();
-	   const handle = document.getElementById("handle");
-	   const email = document.getElementById("email");
-	   localStorage.setItem('handle',handle.value);
-	   localStorage.setItem('email',email.value);
-	   const key = "https://codeforces.com/api/user.info?handles=" +handle.value;
-	   
-	   const allData = await fetch (key); 
-	   const finalData = await allData.json () ;
-	   console.log( finalData.result[ 0]);
-	   await dispatch ( { type : "USER" , payload : finalData.result[ 0] }) 
-	   await history.push('/dashboard');
-	   
-	   // setPassword ( data.password);
-	}
 
   
 
@@ -49,22 +74,22 @@ const Signin =()=>{
 		<h1>Add Employee</h1>
 		<form>
 			<div class="form-group  ">
-				<input type="email" required />
+				<input type="email" onChange = {( e) => setEmail(e.target.value) } required />
 				<label>Email</label>
 			</div>
 			<div class="form-group">
-				<input type="text" required />
+				<input type="text" onChange = {( e) => setName(e.target.value) } required />
 				<label>Name</label>
 			</div>
             <div class="form-group">
-				<input type="text" required />
+				<input type="text" onChange = {( e) => setRole(e.target.value) } required />
 				<label>Role </label>
 			</div>
             <div class="form-group">
-				<input type="text" id="mobilenumber" name="mobilenumber" placeholder="Mobile Number" maxlength="10" pattern="[0-9]{10}" required="true" required />
-				<label>Mobile Number</label>
+				<input type="text" id="mobilenumber" name="mobilenumber"  onChange = {( e) => setSalary(e.target.value) }  pattern="[0-9]{10}" required="true" required />
+				<label>salary</label>
 			</div>
-			<button class="btn green ">Add user </button>
+			<button class="btn green " onClick = { submit}>Add user </button>
 		</form>
 	</div>
 </div>
