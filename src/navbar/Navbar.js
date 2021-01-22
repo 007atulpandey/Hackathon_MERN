@@ -32,21 +32,16 @@ const Navbar =()=>{
     
      return ( 
       <div >
-       
-       
-
      <li> <Link to ="/dashboard" ><i class="material-icons">beenhere</i> Dashboard </Link>  </li>
-     <li>  <Link to="/addemployee" > <i class="material-icons">add_box</i> Add Employee  </ Link > </li>
-     {/* <li><a href="/addemployee">Add Employee</a></li> */}
-     <li><Link to ="/" > General Management </Link></li>
-     
+     <li>  <Link to="/addemployee" > <i class="material-icons">add_box</i> Add Employee  </ Link > </li>     
      <li><Link to ="/leaves" >  <i class="material-icons">chat_bubble</i>  Leaves </Link></li>
+     <li><Link to="badges.html"> <i class="material-icons">do_not_disturb</i> Generate Report</Link></li>    
      <li><Link to ="/bonus" > <i class="material-icons">attach_money</i>Bonus </Link></li>
      <li><Link to ="/payroll" > <i class="material-icons">attach_money</i> Payroll </Link></li>
      <li><Link to="/candidates"><i class="material-icons">account_circle</i> Candidates</Link></li>
-     <li><Link to="badges.html"> <i class="material-icons">do_not_disturb</i> Generate Report</Link></li>
      <li><button onClick = { ()=>{ localStorage.clear() ; history.push('/signin') ; dispatch({type:"CLEAR"})} }>  Logout</button></li>
-     {/* <li><a href="badges.html">SIGNUP</a></li> */}
+     
+     
      </ div >
     );
   }

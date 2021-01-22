@@ -54,16 +54,16 @@ const Home = ()=>{
        Lorem Epsum 
        </h2> 
        <h6> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-         In rutrum fermentum odio in scelerisque. Vestibulum ante ipsum
-          primis in faucibus orci luctus et ultrices posuere cubilia curae; 
-         Donec dapibus iaculis tortor, in laoreet ipsum luctus nec. 
-         </h6>
-     </div >
-     < div className="col-md-6 center"> 
-        <img height={ "400px"}  src = "https://codingcompetitions.withgoogle.com/static/codejam-hero-830.jpg" />
-      </div>   
-      
-    </div >
+            In rutrum fermentum odio in scelerisque. Vestibulum ante ipsum
+              primis in faucibus orci luctus et ultrices posuere cubilia curae; 
+            Donec dapibus iaculis tortor, in laoreet ipsum luctus nec. 
+            </h6>
+        </div >
+        < div className="col-md-6 center"> 
+            <img height={ "400px"}  src = "https://codingcompetitions.withgoogle.com/static/codejam-hero-830.jpg" />
+          </div>   
+          
+        </div >
 
 
     <div className ="end-bar " >
