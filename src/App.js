@@ -14,6 +14,7 @@ import Dashboard from './Detail/dashboard';
 import { reducer ,initialState } from './reducer/userReducer'
 import Signin from './authentication/Login1'
 import EmployeeDetail from './Detail/employee_detail'
+import LeaveReq from './Manage/leaveReq';
 export const UserContext = createContext();
 
 const Routing = ()=>{
@@ -69,6 +70,10 @@ const Routing = ()=>{
       <Route exact path="/hr/:hrId/employees/:empId">
       <Navbar/>
       <EmployeeDetail />
+      </Route>
+      <Route exact path ="/:empId/create-leave-req">
+      <Navbar/>
+      <LeaveReq  />
       </Route>
       
      {/*  

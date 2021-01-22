@@ -1,21 +1,69 @@
-import React , { useState , useEffect}from 'react'
+import React , { useState , useEffect, useContext}from 'react'
 import './list.css'
-
+import {UserContext} from '../App';
+import M from 'materialize-css'
 function  Leaves(props){
       
     const [data , setData ] = useState([]);
-      
+    const {state , dispatch } = useContext( UserContext) ;
+
     useEffect (()=>{
         getData();
      },[]);
       const getData = async () =>{
-          
-        const allData = await fetch ("https://codeforces.com/api/user.rating?handle=tourist");
-        const finalData = await allData.json();
+      
         // console.log(finalData) ;
-        setData( finalData.result);
+        const data = await fetch ("/hr/"+state._id+"/leave-reqs");
+        const final = await data.json();
+        console.log( final) ;
+        setData( final.leaves);
 
       };
+      // /    hr/:hrId/leave-reqs/:leaveId/:status   : post
+      const accept = (e)=>{
+             
+        fetch ("/hr/"+state._id+"/leave-reqs/"+e.target.value+"/1" , {
+          method : "post" ,
+          headers:{
+            "Content-Type":"application/json"
+          }
+        })
+        .then( data => data.json())
+        .then( data =>{
+          if( data.error){
+            M.toast({html: data.error,classes:"#c62828 red darken-3"})
+          }
+          else{
+            M.toast({html:"Added Successfully",classes:"#43a047 green darken-1"})
+          }
+        }
+         
+        )
+          
+
+      }
+      const reject = (e)=>{
+             
+        fetch ("/hr/"+state._id+"/leave-reqs/"+e.target.value+"/0" , {
+          method : "post" ,
+          headers:{
+            "Content-Type":"application/json"
+          }
+        })
+        .then( data => data.json())
+        .then( data =>{
+          if( data.error){
+            M.toast({html: data.error,classes:"#c62828 red darken-3"})
+          }
+          else{
+            M.toast({html:"Rejected",classes:"#43a047 red darken-1"})
+          }
+        }
+         
+        )
+          
+
+      }
 
      
       return (
@@ -24,16 +72,17 @@ function  Leaves(props){
               data.map ( ( contest ) =>{
                 return (<div class="card ">
                   <div class="card-body">
-                    <h5 class="card-title">{contest.handle}</h5>
-                    <p class="card-text">Employee rank: senior developer</p>
-                    <p className="card-text">Reason: holiday vacation</p>
+                    <h5 class="card-title">{contest.employee.name}</h5>
+                    <p class="card-text"> Email : {contest.employee.email}</p>
+                    <p className="card-text">Reason: { contest.reason}</p>
+                    <p class="card-text">Application Date : <input type="text" value={ contest.currDate} readonly/></p>
                     <div className="d-flex justify-content-around ">
-                    <p class="card-text">start date : <input type="text" value={ contest.oldRating} readonly/></p>
-                    <p class="card-text">end date : <input type="text" value={ contest.newRating} readonly /></p>
+                    <p class="card-text">start date : <input type="text" value={ contest.startDate} readonly/></p>
+                    <p class="card-text">end date : <input type="text" value={ contest.endDate} readonly /></p>
                     </div>
                     <div className="d-flex justify-content-around">
-                    <button type="submit" value="accept" name="accept" className=" green darken-1">accept</button>
-                    <button type="submit" value="reject" name="reject">reject</button>
+                    <button  onClick = { accept } name="accept" value= { contest._id} className=" green darken-1">accept</button>
+                    <button  onClick = { reject} name="reject" value = { contest._id}>reject</button>
                     
                     </div>
                     <p>Add remarks</p>
