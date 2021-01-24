@@ -19,6 +19,8 @@ import LeaveReq from './Manage/leaveReq';
 import BonusReq from './Manage/bonusReq';
 import BonusReal from './Manage/bonusReal';
 import Search from './Detail/search';
+import Email from './Forget/Email';
+import Question from './Forget/Question';
 export const UserContext = createContext();
 
 const Routing = ()=>{
@@ -95,6 +97,14 @@ const Routing = ()=>{
       <Route exact path ="/:empId/create-bonus-req">
       <Navbar/>
       <BonusReal  />
+      </Route>
+      <Route exact path ="/email">
+      <Navbar/>
+      <Email  />
+      </Route>
+      <Route exact path ="/question">
+      <Navbar/>
+      <Question  />
       </Route>
       
      {/*  
