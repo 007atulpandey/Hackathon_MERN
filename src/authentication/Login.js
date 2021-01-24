@@ -32,7 +32,9 @@ const Login =()=>{
         fetch("/hr/login",{
             method:"post",
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
+                
             },
             body:JSON.stringify({
                 password,
@@ -89,7 +91,12 @@ const Login =()=>{
                localStorage.setItem("login" , "employee") ;
                dispatch({type:"USER",payload:data.employee})
                M.toast({html:"signedin success",classes:"#43a047 green darken-1"})
+               if(data.employee.securityAnswer){
                history.push('/')
+               }
+               else{
+                   history.push('/addquestion');
+               }
            }
         }).catch(err=>{
             console.log(err)

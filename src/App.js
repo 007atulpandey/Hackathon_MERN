@@ -11,6 +11,7 @@ import OpenAttendance from './authentication/OpenAttendance'
 import Bonus from './authentication/Bonus'
 import Loan from  './Manage/bonus'
 import Leaves from './authentication/Leaves'
+import Addq from './Forget/AddQ'
 import Payroll from './authentication/Payroll'
 import Attendance from './authentication/Attendance'
 import AllowDeduct from './authentication/AllowDeduct'
@@ -19,29 +20,25 @@ import { reducer ,initialState } from './reducer/userReducer'
 import Signin from './authentication/Login1'
 import EmployeeDetail from './Detail/employee_detail'
 import LeaveReq from './Manage/leaveReq';
-<<<<<<< HEAD
-
-=======
 import BonusReq from './Manage/bonusReq';
 import BonusReal from './Manage/bonusReal';
 import Search from './Detail/search';
 import Email from './Forget/Email';
 import Question from './Forget/Question';
 import Password from './Forget/Password';
->>>>>>> upstream/main
 export const UserContext = createContext();
 
 const Routing = ()=>{
   const history = useHistory()
   const {state,dispatch} = useContext(UserContext)
-  useEffect(async ()=>{
-    const user =  await JSON.parse(localStorage.getItem("user"))
+  useEffect( ()=>{
+    const user =   JSON.parse(localStorage.getItem("user"))
     if(user){
-       await  dispatch({type:"USER",payload:user})
+         dispatch({type:"USER",payload:user})
        history.push("/")
      
     }else{
-          await history.push('/signin')
+           history.push('/signin')
     }
   },[])
   return(
@@ -68,7 +65,7 @@ const Routing = ()=>{
       </Route> */}
       <Route exact path="/candidates">
       <Navbar />
-        <ListCandidates />
+      <ListCandidates />
       </Route>
       <Route exact path="/dashboard">
       <Navbar />
@@ -98,20 +95,6 @@ const Routing = ()=>{
       <Navbar/>
       <LeaveReq  />
       </Route>
-<<<<<<< HEAD
-      <Route exact path="/attendance">
-      <Navbar/>
-      <Attendance data={Candidates}/>
-      </Route>
-      <Route exact path="/open-attendance">
-      <Navbar/>
-      <OpenAttendance/>
-      </Route>
-      <Route exact path="/:empId/allowdeduct">
-      <Navbar/>
-      <AllowDeduct/>
-      </Route>
-=======
       <Route exact path ="/:empId/create-loan-req">
       <Navbar/>
       <BonusReq  />
@@ -132,8 +115,23 @@ const Routing = ()=>{
       <Navbar/>
       <Password  />
       </Route>
+      <Route exact path ="/addquestion">
+      <Navbar/>
+      <Addq />
+      </Route>
+      <Route exact path ="/open-attendance">
+      <Navbar/>
+      <OpenAttendance />
+      </Route>
+      <Route exact path ="/attendance">
+      <Navbar/>
+      <Attendance />
+      </Route>
+      <Route exact path ="/:empId/allowdeduct">
+      <Navbar/>
+      <AllowDeduct />
+      </Route>
       
->>>>>>> upstream/main
      {/*  
       <Route path="/create">
         <CreatePost/>

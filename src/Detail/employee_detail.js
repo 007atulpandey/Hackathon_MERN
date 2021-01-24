@@ -23,7 +23,8 @@ function EmployeeDetail()
         await fetch ('/hr/'+hrId+'/employees/'+empId,{
             method:"get",
           headers:{
-              "Content-Type":"application/json"
+              "Content-Type":"application/json",
+              "Authorization":"Bearer "+localStorage.getItem("jwt")
           },
         })
         .then ( data => data.json())

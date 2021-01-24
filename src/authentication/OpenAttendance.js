@@ -15,7 +15,8 @@ function OpenAttendance(props) {
         fetch ("/hr/"+name._id+"/open-attendance" , {
           method : "post" ,
           headers:{
-            "Content-Type":"application/json"
+            "Content-Type":"application/json",
+            "Authorization":"Bearer "+localStorage.getItem("jwt")
           }
         })
         .then( data => data.json())

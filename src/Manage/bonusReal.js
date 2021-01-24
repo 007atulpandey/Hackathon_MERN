@@ -12,7 +12,8 @@ const BonusReal = () =>{
     fetch("/employee/"+state._id+"/create-bonus-req",{
             method:"post",
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
             },
             body:JSON.stringify({
                 amount : start 

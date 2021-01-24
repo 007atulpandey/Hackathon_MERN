@@ -33,7 +33,8 @@ const Search = () =>{
         fetch( "/hr/"+state._id+"/search",{
             method:"post",
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
             },
             body:JSON.stringify({
                 data 

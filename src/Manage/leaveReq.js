@@ -13,7 +13,8 @@ const LeaveReq = () =>{
     fetch("/employee/"+state._id+"/create-leave-req",{
             method:"post",
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
             },
             body:JSON.stringify({
                 startDate : start , 

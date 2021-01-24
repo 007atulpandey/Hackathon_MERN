@@ -12,7 +12,8 @@ const BonusReq = () =>{
     fetch("/employee/"+state._id+"/create-loan-req",{
             method:"post",
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
             },
             body:JSON.stringify({
                 isLoan: "True" ,

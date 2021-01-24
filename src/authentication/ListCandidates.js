@@ -7,7 +7,7 @@ import { UserContext}  from  '../App'
 function  ListCandidates(props){
       const { state , dispatch } = useContext( UserContext) ;
     const [data , setData ] = useState([]);
-      
+      const [ flag , setFlag] = useState ( false ) ;
     useEffect (()=>{
         getData();
      },[]);
@@ -16,7 +16,8 @@ function  ListCandidates(props){
        await fetch(`hr/`+state._id+`/employees`,{
           method:"get",
           headers:{
-              "Content-Type":"application/json"
+              "Content-Type":"application/json",
+              "Authorization":"Bearer "+localStorage.getItem("jwt")
           },
       }).then(res=>res.json())
       .then(data=>{
@@ -28,6 +29,12 @@ function  ListCandidates(props){
        
             console.log(data) ;
             setData(data.employees);
+
+            if( data.employees.length > 0) 
+            setFlag( true ) 
+            else 
+            setFlag( false )
+
          }
       }).catch(err=>{
           console.log(err)
@@ -40,8 +47,8 @@ function  ListCandidates(props){
       return (
         <div class= " container list-candidate " > 
             { 
-              // hr/:hrId/employees/:empId
-
+              
+             flag ?
               data.map ( ( contest ) =>{
                 return (<div class="card ">
                   <div class="card-body">
@@ -55,6 +62,7 @@ function  ListCandidates(props){
                   </div>
                 </div>)
               })
+              :<></>
             }            
         </div> 
 

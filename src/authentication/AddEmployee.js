@@ -18,7 +18,8 @@ const AddEmployee =()=>{
         fetch(`hr/`+state._id+`/login`,{
             method:"post",
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
             },
             body:JSON.stringify({
                 password,

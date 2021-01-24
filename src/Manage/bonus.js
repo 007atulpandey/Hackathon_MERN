@@ -29,7 +29,8 @@ const Loan = () => {
         fetch ("/hr/"+state._id+"/loan-reqs/"+e.target.value+"/1" , {
           method : "post" ,
           headers:{
-            "Content-Type":"application/json"
+            "Content-Type":"application/json",
+            "Authorization":"Bearer "+localStorage.getItem("jwt")
           }
         })
         .then( data => data.json())
@@ -55,7 +56,8 @@ const Loan = () => {
         fetch ("/hr/"+state._id+"/loan-reqs/"+e.target.value+"/2" , {
           method : "post" ,
           headers:{
-            "Content-Type":"application/json"
+            "Content-Type":"application/json",
+            "Authorization":"Bearer "+localStorage.getItem("jwt")
           }
         })
         .then( data => data.json())

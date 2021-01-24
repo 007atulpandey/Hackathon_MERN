@@ -2,24 +2,30 @@ import React, { useContext, useState, useEffect } from 'react'
 import { Link,useHistory} from 'react-router-dom'
 import M from 'materialize-css' 
 import  '../authentication/login1.css'
+import { UserContext } from '../App';
 
-const Email =()=>{
+const Addq =()=>{
+    
+    const { state , dispatch} = useContext( UserContext);
     const history = useHistory();    
-	const [email , setEmail] = useState("");
+	const [answer , setAnswer] = useState("");
+	const [question , setQuestion] = useState("");
     function submit (e) {
-        var data = {};
-        if( email != "")
-        data.email = email ;
-		e.preventDefault();
-        // console.log( state) ;
-        fetch(`/hr/12345678/search`,{
+        e.preventDefault();
+        if( answer ==='' ||question==='' ){
+            history.push('/addquestion');
+        }
+        else{
+
+        fetch(`/employee/` + state._id+`/add-security-question`,{
             method:"post",
             headers:{
                 "Content-Type":"application/json",
                 "Authorization":"Bearer "+localStorage.getItem("jwt")
             },
             body:JSON.stringify({
-				data
+                answer :answer, 
+                question :question
             })
         }).then(res=>res.json())
         .then(data=>{
@@ -28,26 +34,14 @@ const Email =()=>{
               M.toast({html: data.error,classes:"#c62828 red darken-3"})
            }
            else{
-            //    console.log( data)
-			   
-			// history.push('/question')
-            // console.log( "success");
-            if( data.employees.length ===0 ) {
-                M.toast({html:"Not Found",classes:"#c62828 red darken-3"})
-
-            }
-            else {
-                // M.toast({html: data.error,classes:"#c62828 green darken-3"})
-                localStorage.setItem('email', data.employees[ 0] .email);
-                localStorage.setItem('question' , data.employees[0].name);
-                localStorage.setItem('Id' , data.employees[0]._id);
-                history.push('/question');
-            }
-            
+            console.log( data) ;
+            history.push('/') ;
            }
         }).catch(err=>{
             console.log(err)
         })
+
+    }
 	}  
 
 
@@ -74,11 +68,15 @@ const Email =()=>{
 
 <div class="mt-5 container containers">
 	<div class="login-form">
-		<h1> Enter Your Email</h1>
+		<h1> Enter Your Security Answer</h1>
 		<form>
 			<div class="form-group  ">
-				<input type="email" onChange = {( e) => setEmail(e.target.value) } required />
-				<label>Email</label>
+                <input type="text"  onChange = {( e) => setQuestion(e.target.value) }  required />
+				
+			</div>
+			<div class="form-group  ">
+				<input type="text" onChange = {( e) => setAnswer(e.target.value) } required />
+				<label>Answer</label>
 			</div>
 			<button class="btn green " onClick = { submit}> Next </button>
 		</form>
@@ -90,4 +88,4 @@ const Email =()=>{
 
 }
 
-export default Email 
+export default Addq; 

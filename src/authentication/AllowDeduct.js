@@ -30,7 +30,8 @@ function AllowDeduct()
           fetch ('/hr/'+hrId+'/employees/'+empId,{
             method:"get",
           headers:{
-              "Content-Type":"application/json"
+              "Content-Type":"application/json",
+              "Authorization":"Bearer "+localStorage.getItem("jwt")
           },
         })
         .then ( data => data.json())
@@ -53,7 +54,8 @@ function AllowDeduct()
       fetch ('/hr/'+hrId+'/employees/'+empId+"/edit",{
             method:"put",
           headers:{
-              "Content-Type":"application/json"
+              "Content-Type":"application/json",
+              "Authorization":"Bearer "+localStorage.getItem("jwt")
           },
           body:JSON.stringify({
             salary,team
@@ -75,7 +77,8 @@ function AllowDeduct()
       fetch ('/hr/'+hrId+'/employees/'+empId+"/edit",{
             method:"put",
           headers:{
-              "Content-Type":"application/json"
+              "Content-Type":"application/json",
+              "Authorization":"Bearer "+localStorage.getItem("jwt")
           },
           body:JSON.stringify({
             salary,team
@@ -99,7 +102,8 @@ function AllowDeduct()
            fetch ('/hr/'+emp.hr+'/employees/'+empId+"/add-allowance",{
             method:"post",
           headers:{
-              "Content-Type":"application/json"
+              "Content-Type":"application/json",
+              "Authorization":"Bearer "+localStorage.getItem("jwt")
           },
           body:JSON.stringify({
             title,amount,time
@@ -128,7 +132,8 @@ function AllowDeduct()
            fetch ('/hr/'+emp.hr+'/employees/'+empId+"/add-deduction",{
             method:"post",
           headers:{
-              "Content-Type":"application/json"
+              "Content-Type":"application/json",
+              "Authorization":"Bearer "+localStorage.getItem("jwt")
           },
           body:JSON.stringify({
             title,amount,time
@@ -153,7 +158,8 @@ function deleteallow(e)
       fetch ('/hr/'+emp.hr+'/employees/'+empId+"/remove-allowance/"+e.target.value,{
             method:"post",
           headers:{
-              "Content-Type":"application/json"
+              "Content-Type":"application/json",
+              "Authorization":"Bearer "+localStorage.getItem("jwt")
           },
         })
         .then ( data => data.json())
@@ -202,7 +208,8 @@ function deletededuct(e)
       fetch ('/hr/'+emp.hr+'/employees/'+empId+"/remove-deduction/"+e.target.value,{
           method:"post",
           headers:{
-              "Content-Type":"application/json"
+              "Content-Type":"application/json",
+              "Authorization":"Bearer "+localStorage.getItem("jwt")
           },
         })
         .then ( data => data.json())

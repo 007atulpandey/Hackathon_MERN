@@ -28,7 +28,8 @@ function  Leaves(props){
         fetch ("/hr/"+state._id+"/leave-reqs/"+e.target.value+"/1" , {
           method : "post" ,
           headers:{
-            "Content-Type":"application/json"
+            "Content-Type":"application/json",
+            "Authorization":"Bearer "+localStorage.getItem("jwt")
           }
         })
         .then( data => data.json())
@@ -50,7 +51,8 @@ function  Leaves(props){
         fetch ("/hr/"+state._id+"/leave-reqs/"+e.target.value+"/2" , {
           method : "post" ,
           headers:{
-            "Content-Type":"application/json"
+            "Content-Type":"application/json",
+            "Authorization":"Bearer "+localStorage.getItem("jwt")
           }
         })
         .then( data => data.json())
