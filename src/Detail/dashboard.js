@@ -6,7 +6,8 @@ import {UserContext} from '../App';
 
 
 function Dashboard(){
-
+     
+  const history = useHistory (); 
      const {state , dispatch }= useContext( UserContext) ;
      const [ name , setName ]= useState ("") ;
      const [ email , setEmail] = useState ("") ;
@@ -20,6 +21,9 @@ function Dashboard(){
        setMobile( state.password) ;
        
      },[])
+    
+     
+     
       return ( 
        
        <div className = "main">
