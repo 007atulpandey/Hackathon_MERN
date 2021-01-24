@@ -108,7 +108,7 @@ const Login =()=>{
   <div class="forms">
     <div class="form-wrapper is-active">
       <button type="button" class="switcher switcher-login">
-        HR Login
+        HR 
         <span class="underline"></span>
       </button>
       <form class="form form-login">
@@ -128,7 +128,7 @@ const Login =()=>{
     </div>
     <div class="form-wrapper">
       <button type="button" class="switcher switcher-signup">
-        Employee Login 
+        Employee 
         <span class="underline"></span>
       </button>
       <form class="form form-signup">
@@ -142,8 +142,9 @@ const Login =()=>{
             <label for="signup-password-confirm">Password</label>
             <input type="password" onChange = {(e ) => setPasword( e.target.value)} required />
           </div>
+          <Link to = "/email" > Forget  Password</ Link>
         </fieldset>
-        <button class="btn green " onClick = { empLogin}> Login  </button>
+        <button class="btn green mt-4" onClick = { empLogin}> Login  </button>
       </form>
     </div>
   </div>

@@ -1,12 +1,15 @@
 import React , { useState , useEffect, useContext}from 'react'
 import './list.css'
+import { useHistory } from 'react-router-dom'
 import {UserContext} from '../App';
 import M from 'materialize-css'
 function  Leaves(props){
       
     const [data , setData ] = useState([]);
     const {state , dispatch } = useContext( UserContext) ;
-
+    const history = useHistory();
+    if( state === null)
+       history.push("/")
     useEffect (()=>{
         getData();
      },[]);
@@ -44,7 +47,7 @@ function  Leaves(props){
       }
       const reject = (e)=>{
              
-        fetch ("/hr/"+state._id+"/leave-reqs/"+e.target.value+"/0" , {
+        fetch ("/hr/"+state._id+"/leave-reqs/"+e.target.value+"/2" , {
           method : "post" ,
           headers:{
             "Content-Type":"application/json"

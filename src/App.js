@@ -9,6 +9,7 @@ import Candidates from './checking_props/candidates'
 import ListCandidates from './authentication/ListCandidates'
 import OpenAttendance from './authentication/OpenAttendance'
 import Bonus from './authentication/Bonus'
+import Loan from  './Manage/bonus'
 import Leaves from './authentication/Leaves'
 import Payroll from './authentication/Payroll'
 import Attendance from './authentication/Attendance'
@@ -18,19 +19,29 @@ import { reducer ,initialState } from './reducer/userReducer'
 import Signin from './authentication/Login1'
 import EmployeeDetail from './Detail/employee_detail'
 import LeaveReq from './Manage/leaveReq';
+<<<<<<< HEAD
 
+=======
+import BonusReq from './Manage/bonusReq';
+import BonusReal from './Manage/bonusReal';
+import Search from './Detail/search';
+import Email from './Forget/Email';
+import Question from './Forget/Question';
+import Password from './Forget/Password';
+>>>>>>> upstream/main
 export const UserContext = createContext();
 
 const Routing = ()=>{
   const history = useHistory()
   const {state,dispatch} = useContext(UserContext)
-  useEffect(()=>{
-    const user = JSON.parse(localStorage.getItem("user"))
+  useEffect(async ()=>{
+    const user =  await JSON.parse(localStorage.getItem("user"))
     if(user){
-        dispatch({type:"USER",payload:user})
+       await  dispatch({type:"USER",payload:user})
+       history.push("/")
      
     }else{
-           history.push('/signin')
+          await history.push('/signin')
     }
   },[])
   return(
@@ -43,6 +54,10 @@ const Routing = ()=>{
         <Navbar />
         <Login />
       </Route>
+      <Route path="/search">
+        <Navbar />
+        <Search />
+      </Route>
       <Route path="/addemployee">
         <Navbar />
         <Signin />
@@ -53,7 +68,7 @@ const Routing = ()=>{
       </Route> */}
       <Route exact path="/candidates">
       <Navbar />
-        <ListCandidates  data = { Candidates}/>
+        <ListCandidates />
       </Route>
       <Route exact path="/dashboard">
       <Navbar />
@@ -61,24 +76,29 @@ const Routing = ()=>{
       </Route>
       <Route exact path="/leaves">
       <Navbar/>
-      <Leaves data={Candidates}/>
+      <Leaves />
+      </Route>
+      <Route exact path="/loan">
+      <Navbar/>
+      <Loan/>
       </Route>
       <Route exact path="/bonus">
        <Navbar/>
-      <Bonus data={Candidates}/>
+      <Bonus />
       </Route>
       <Route exact path="/payroll">
       <Navbar/>
-      <Payroll data={Candidates}/>
+      <Payroll />
       </Route>
       <Route exact path="/hr/:hrId/employees/:empId">
-      <Navbar/>
+      <Navbar/> 
       <EmployeeDetail />
       </Route>
       <Route exact path ="/:empId/create-leave-req">
       <Navbar/>
       <LeaveReq  />
       </Route>
+<<<<<<< HEAD
       <Route exact path="/attendance">
       <Navbar/>
       <Attendance data={Candidates}/>
@@ -91,6 +111,29 @@ const Routing = ()=>{
       <Navbar/>
       <AllowDeduct/>
       </Route>
+=======
+      <Route exact path ="/:empId/create-loan-req">
+      <Navbar/>
+      <BonusReq  />
+      </Route>
+      <Route exact path ="/:empId/create-bonus-req">
+      <Navbar/>
+      <BonusReal  />
+      </Route>
+      <Route exact path ="/email">
+      <Navbar/>
+      <Email  />
+      </Route>
+      <Route exact path ="/question">
+      <Navbar/>
+      <Question  />
+      </Route>
+      <Route exact path ="/password">
+      <Navbar/>
+      <Password  />
+      </Route>
+      
+>>>>>>> upstream/main
      {/*  
       <Route path="/create">
         <CreatePost/>
