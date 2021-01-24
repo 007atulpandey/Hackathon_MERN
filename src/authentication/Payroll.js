@@ -1,59 +1,94 @@
 import React , { useState , useEffect}from 'react'
 import './list.css'
-
+import { Link } from 'react-router-dom'; 
 
 function  Payroll(props){
       
     const [data , setData ] = useState([]);
-      
+    const [istrue,setIstrue]=useState(false);
+    const name= JSON.parse(localStorage.getItem('user'));
     useEffect (()=>{
         getData();
      },[]);
       const getData = async () =>{
-          
-        const allData = await fetch ("https://codeforces.com/api/user.rating?handle=tourist");
-        const finalData = await allData.json();
-        // console.log(finalData) ;
-        setData( finalData.result);
-
-      };
+        fetch ("/hr/"+name._id+"/employees" , {
+          method : "get" ,
+          headers:{
+            "Content-Type":"application/json"
+          }
+        })
+        .then( data => data.json())
+        .then( data =>{
+          console.log(data);
+          setData(data);
+          setIstrue(true);
+          /*if(!data)return null;
+          else return data;*/
+        })
      
+      };
+      useEffect(()=>{
+        Payrollcomp();
+      },[istrue])
+     const ch=1;
+     /* useEffect(()=>{
+        fetch ("/hr/"+name._id+"/employees" , {
+          method : "get" ,
+          headers:{
+            "Content-Type":"application/json"
+          }
+        })
+        .then( data => data.json())
+        .then( data =>{
+          console.log(data);
+          setData(data);
+          console.log(data);
+
+        })
+       // Payrollcomp();
+      },[])
+      useEffect(()=>{
+        if(data!==undefined)
+         {Payrollcomp();}
+      },[data])*/
+     function Payrollcomp(){
+      if(istrue)
+      {
+        console.log(istrue)
+        if(data.employees!==undefined)
+        {return (<tbody>
+                             {
+                              data.employees.map ( ( e ) =>{
+                              return (
+                                      <tr>
+                                      <td>{e.name}</td>
+                                      <td>{e.team}  </td>
+                                      <td>{e.role}</td>
+                                      <td><input type="text" value={e.salary} readonly/></td>
+                                      <td> <Link to={"/"+e._id+"/allowdeduct"}><i class="material-icons">create</i></Link></td>
+                                      </tr>
+                                      );
+                                                           }
+                                                )
+                            }
+               </tbody>);
+                            }
+
+      }
+      return <p>Loading...</p>;
+     }
       return (
             <div class="container list-candidate">
               <table>
                       <thead>
                         <tr>
                             <th>Name</th>
-                            <th>employee id</th>
-                            <th>Department</th>
+                            <th>Team</th>
                             <th>Role</th>
-                            <th>Home allowance</th>
-                            <th>Travel allowance</th>
-                            <th>Medical allowance</th>
-                            <th>Deductions</th>
-                            <th>Payroll amount</th>
-                            <th></th>
+                            <th>Salary</th>
                         </tr>
                       </thead>
-                      <tbody>
-                      {data.map ( ( contest ) =>{
-                return (
-                        <tr>
-                        <td>{contest.handle}</td>
-                        <td>12345896</td>
-                        <td>IT</td>
-                        <td>SDE-I</td>
-                        <td><input type="text" value={ contest.oldRating} readonly/></td>
-                        <td><input type="text" value={ contest.oldRating} readonly/></td>
-                        <td><input type="text" value={ contest.oldRating} readonly/></td>
-                        <td><input type="text" value={ contest.oldRating} readonly/></td>
-                        <td><input type="text" value={ contest.oldRating} readonly/></td>
-                        <td> <i class="material-icons">create</i></td>
-                        </tr>
-                        )
-              })
-                       }
-                       </tbody>
+                     <Payrollcomp/>
              </table>
             </div>
              );
