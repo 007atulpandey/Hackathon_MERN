@@ -7,21 +7,28 @@ import {BrowserRouter,Route,Switch,useHistory} from 'react-router-dom'
 import AddEmployee from './authentication/AddEmployee';
 import Candidates from './checking_props/candidates' 
 import ListCandidates from './authentication/ListCandidates'
+import OpenAttendance from './authentication/OpenAttendance'
 import Bonus from './authentication/Bonus'
 import Loan from  './Manage/bonus'
 import Leaves from './authentication/Leaves'
 import Payroll from './authentication/Payroll'
+import Attendance from './authentication/Attendance'
+import AllowDeduct from './authentication/AllowDeduct'
 import Dashboard from './Detail/dashboard';
 import { reducer ,initialState } from './reducer/userReducer'
 import Signin from './authentication/Login1'
 import EmployeeDetail from './Detail/employee_detail'
 import LeaveReq from './Manage/leaveReq';
+<<<<<<< HEAD
+
+=======
 import BonusReq from './Manage/bonusReq';
 import BonusReal from './Manage/bonusReal';
 import Search from './Detail/search';
 import Email from './Forget/Email';
 import Question from './Forget/Question';
 import Password from './Forget/Password';
+>>>>>>> upstream/main
 export const UserContext = createContext();
 
 const Routing = ()=>{
@@ -91,6 +98,20 @@ const Routing = ()=>{
       <Navbar/>
       <LeaveReq  />
       </Route>
+<<<<<<< HEAD
+      <Route exact path="/attendance">
+      <Navbar/>
+      <Attendance data={Candidates}/>
+      </Route>
+      <Route exact path="/open-attendance">
+      <Navbar/>
+      <OpenAttendance/>
+      </Route>
+      <Route exact path="/:empId/allowdeduct">
+      <Navbar/>
+      <AllowDeduct/>
+      </Route>
+=======
       <Route exact path ="/:empId/create-loan-req">
       <Navbar/>
       <BonusReq  />
@@ -112,6 +133,7 @@ const Routing = ()=>{
       <Password  />
       </Route>
       
+>>>>>>> upstream/main
      {/*  
       <Route path="/create">
         <CreatePost/>

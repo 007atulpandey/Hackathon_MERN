@@ -18,7 +18,7 @@ function  Leaves(props){
         // console.log(finalData) ;
         const data = await fetch ("/hr/"+state._id+"/leave-reqs");
         const final = await data.json();
-        console.log( final) ;
+        //console.log( final) ;
         setData( final.leaves);
 
       };
