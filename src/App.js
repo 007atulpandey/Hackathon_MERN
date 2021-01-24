@@ -21,6 +21,7 @@ import BonusReal from './Manage/bonusReal';
 import Search from './Detail/search';
 import Email from './Forget/Email';
 import Question from './Forget/Question';
+import Password from './Forget/Password';
 export const UserContext = createContext();
 
 const Routing = ()=>{
@@ -105,6 +106,10 @@ const Routing = ()=>{
       <Route exact path ="/question">
       <Navbar/>
       <Question  />
+      </Route>
+      <Route exact path ="/password">
+      <Navbar/>
+      <Password  />
       </Route>
       
      {/*  
