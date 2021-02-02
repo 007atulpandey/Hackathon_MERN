@@ -1,169 +1,38 @@
 import React,{useEffect,createContext,useReducer,useContext} from 'react';
 import './App.css';
-import Navbar from './navbar/Navbar' ;
-import Home from './authentication/Home'
-import Login from './authentication/Login'
-import {BrowserRouter,Route,Switch,useHistory} from 'react-router-dom'
-import AddEmployee from './authentication/AddEmployee';
-import Candidates from './checking_props/candidates' 
-import ListCandidates from './authentication/ListCandidates'
-import OpenAttendance from './authentication/OpenAttendance'
-import Bonus from './authentication/Bonus'
-import Loan from  './Manage/bonus'
-import Leaves from './authentication/Leaves'
-import Addq from './Forget/AddQ'
-import Payroll from './authentication/Payroll'
-import Attendance from './authentication/Attendance'
-import AllowDeduct from './authentication/AllowDeduct'
-import Dashboard from './Detail/dashboard';
-import { reducer ,initialState } from './reducer/userReducer'
-import Signin from './authentication/Login1'
-import EmployeeDetail from './Detail/employee_detail'
-import LeaveReq from './Manage/leaveReq';
-import BonusReq from './Manage/bonusReq';
-import BonusReal from './Manage/bonusReal';
-import Search from './Detail/search';
-import Email from './Forget/Email';
-import Question from './Forget/Question';
-import Password from './Forget/Password';
-export const UserContext = createContext();
+import {BrowserRouter,Route,Switch,useHistory} from 'react-router-dom';
+import Home from './Source/Home';
+import Video from './Source/Videos';
+import Navbar from './navbar/Navbar';
 
 const Routing = ()=>{
-  const history = useHistory()
-  const {state,dispatch} = useContext(UserContext)
-  useEffect( ()=>{
-    const user =   JSON.parse(localStorage.getItem("user"))
-    if(user){
-         dispatch({type:"USER",payload:user})
-       history.push("/")
-     
-    }else{
-           history.push('/signin')
-    }
-  },[])
+
+  
   return(
     <Switch>
       <Route exact path="/" >
-      <Navbar />
+      < Navbar/>
       <Home />
       </Route>
-      <Route path="/signin">
-        <Navbar />
-        <Login />
-      </Route>
-      <Route path="/search">
-        <Navbar />
-        <Search />
-      </Route>
-      <Route path="/addemployee">
-        <Navbar />
-        <Signin />
-      </Route>
-      {/* <Route path="/addemployee">
+      <Route exact path="/allvideos" >
       <Navbar />
-        <AddEmployee />
-      </Route> */}
-      <Route exact path="/candidates">
-      <Navbar />
-      <ListCandidates />
-      </Route>
-      <Route exact path="/dashboard">
-      <Navbar />
-        <Dashboard />
-      </Route>
-      <Route exact path="/leaves">
-      <Navbar/>
-      <Leaves />
-      </Route>
-      <Route exact path="/loan">
-      <Navbar/>
-      <Loan/>
-      </Route>
-      <Route exact path="/bonus">
-       <Navbar/>
-      <Bonus />
-      </Route>
-      <Route exact path="/payroll">
-      <Navbar/>
-      <Payroll />
-      </Route>
-      <Route exact path="/hr/:hrId/employees/:empId">
-      <Navbar/> 
-      <EmployeeDetail />
-      </Route>
-      <Route exact path ="/:empId/create-leave-req">
-      <Navbar/>
-      <LeaveReq  />
-      </Route>
-      <Route exact path ="/:empId/create-loan-req">
-      <Navbar/>
-      <BonusReq  />
-      </Route>
-      <Route exact path ="/:empId/create-bonus-req">
-      <Navbar/>
-      <BonusReal  />
-      </Route>
-      <Route exact path ="/email">
-      <Navbar/>
-      <Email  />
-      </Route>
-      <Route exact path ="/question">
-      <Navbar/>
-      <Question  />
-      </Route>
-      <Route exact path ="/password">
-      <Navbar/>
-      <Password  />
-      </Route>
-      <Route exact path ="/addquestion">
-      <Navbar/>
-      <Addq />
-      </Route>
-      <Route exact path ="/open-attendance">
-      <Navbar/>
-      <OpenAttendance />
-      </Route>
-      <Route exact path ="/attendance">
-      <Navbar/>
-      <Attendance />
-      </Route>
-      <Route exact path ="/:empId/allowdeduct">
-      <Navbar/>
-      <AllowDeduct />
-      </Route>
-      
-     {/*  
-      <Route path="/create">
-        <CreatePost/>
-      </Route>
-      <Route path="/profile/:userid">
-        <UserProfile />
-      </Route>
-      <Route path="/myfollowingpost">
-        <SubscribedUserPosts />
-      </Route>
-      <Route exact path="/reset">
-        <Reset/>
-      </Route>
-      <Route path="/reset/:token">
-        <NewPassword />
-      </Route> */}
-      
+      <Video />
+      </Route>      
     </Switch>
   )
 }
 
 function App() {
-  const [state,dispatch] = useReducer(reducer,initialState)
+  
   return (
-    <UserContext.Provider value={{state,dispatch}}>
+    
     <BrowserRouter>
       
       {/* <Navbar /> */}
       <Routing />
       
     </BrowserRouter>
-    </UserContext.Provider>
+    
     
   );
 }
