@@ -7,7 +7,7 @@
     "npm" :"6.12.1"
 
   },
-  
+  "proxy": "https://server0826.herokuapp.com",
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@testing-library/jest-dom": "^5.11.9",
