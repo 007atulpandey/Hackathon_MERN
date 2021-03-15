@@ -2,8 +2,6 @@ import React , { useEffect, useContext }from 'react' ;
 import M from 'materialize-css'
 import "./Nav.css"
 import { Link , useHistory  } from 'react-router-dom'; 
-
-// import GavelRoundedIcon from '@material-ui/icons/GavelRounded';
 const Navbar =()=>{
    
   
@@ -12,7 +10,7 @@ const Navbar =()=>{
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems,'left');
   }); 
-  
+
 
   const history = useHistory (); 
 

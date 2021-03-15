@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
 
 
 
 const Video =()=>{
     
 
-    const [data , allData] = useState([]) 
+    const [data , allData] = useState([]);
 
     useEffect(()=>{
 
@@ -17,8 +18,6 @@ const Video =()=>{
         .then( data => data.result ) 
         .then( data => allData(data));
 
-        
-        
         return () => flag = false ;
     } ,[]);
 
@@ -45,7 +44,7 @@ const Video =()=>{
 <table class="table table-dark">
   <thead className="bg-danger">
     <tr className="bg-danger">
-      <th scope="col">Upcoming Contest</th>
+      <th scope="col">  All Videos   </th>
     </tr>
   </thead>
   <thead>
@@ -64,9 +63,9 @@ const Video =()=>{
             return (
                 <>
                 <tr>
-                  <th scope="row">{user.title }</th>
+                  <th scope="row"> <img src = {user.imageUrl} />  </th>
+                  <td>{user.title }</td>
                   <td>{ user.artist }</td>
-                  <td>{ user.imageUrl}</td>
                   <td>{ user.youtubeLink }</td>
                   <td>  < button className = "red " value = { user._id}  onClick = { remove }>  remove  </ button >  </td>
                 </tr>

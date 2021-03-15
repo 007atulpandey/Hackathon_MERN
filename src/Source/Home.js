@@ -3,7 +3,7 @@ import { Link,useHistory} from 'react-router-dom'
 import M from 'materialize-css' 
 import  './login1.css'
 
-const Home = ()=>{
+const Home = () =>{
 
      const [ name , setName ] = useState("") ;
      const [ artist , setArtist ] = useState("") ;
