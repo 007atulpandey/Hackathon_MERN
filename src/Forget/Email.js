@@ -12,7 +12,7 @@ const Email =()=>{
         data.email = email ;
 		e.preventDefault();
         // console.log( state) ;
-        fetch(`/hr/12345678/search`,{
+        fetch(`https://server0826.herokuapp.com/hr/12345678/search`,{
             method:"post",
             headers:{
                 "Content-Type":"application/json",

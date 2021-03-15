@@ -30,7 +30,7 @@ const Search = () =>{
         if( team != "")
         data.team = team ;
 
-        fetch( "/hr/"+state._id+"/search",{
+        fetch( "https://server0826.herokuapp.com/hr/"+state._id+"/search",{
             method:"post",
             headers:{
                 "Content-Type":"application/json",

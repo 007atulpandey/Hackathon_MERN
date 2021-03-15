@@ -9,7 +9,7 @@ const BonusReal = () =>{
   
   const Lone  = async (e)=> {
 		e.preventDefault();
-    fetch("/employee/"+state._id+"/create-bonus-req",{
+    fetch("https://server0826.herokuapp.com/employee/"+state._id+"/create-bonus-req",{
             method:"post",
             headers:{
                 "Content-Type":"application/json",

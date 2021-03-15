@@ -12,7 +12,7 @@ const Password =()=>{
         e.preventDefault();
         var data  = {};
         data.password = password;
-        fetch(`/employee/update-password`,{
+        fetch(`https://server0826.herokuapp.com/employee/update-password`,{
             method:"post",
             headers:{
                 "Content-Type":"application/json"

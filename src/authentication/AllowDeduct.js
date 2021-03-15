@@ -27,7 +27,7 @@ function AllowDeduct()
      
      const getData = async () =>{
 
-          fetch ('/hr/'+hrId+'/employees/'+empId,{
+          fetch ('https://server0826.herokuapp.com/hr/'+hrId+'/employees/'+empId,{
             method:"get",
           headers:{
               "Content-Type":"application/json",
@@ -51,7 +51,7 @@ function AllowDeduct()
       const team=emp.team;
       //console.log(salary);
       //console.log(team);
-      fetch ('/hr/'+hrId+'/employees/'+empId+"/edit",{
+      fetch ('https://server0826.herokuapp.com/hr/'+hrId+'/employees/'+empId+"/edit",{
             method:"put",
           headers:{
               "Content-Type":"application/json",
@@ -74,7 +74,7 @@ function AllowDeduct()
       const team=document.getElementById("teamname").value;
       //console.log(salary);
       //console.log(team);
-      fetch ('/hr/'+hrId+'/employees/'+empId+"/edit",{
+      fetch ('https://server0826.herokuapp.com/hr/'+hrId+'/employees/'+empId+"/edit",{
             method:"put",
           headers:{
               "Content-Type":"application/json",
@@ -99,7 +99,7 @@ function AllowDeduct()
       const amount=document.getElementById("allowamt").value;
       const time=document.getElementById("allowtime").value;
       console.log(title);
-           fetch ('/hr/'+emp.hr+'/employees/'+empId+"/add-allowance",{
+           fetch ('https://server0826.herokuapp.com/hr/'+emp.hr+'/employees/'+empId+"/add-allowance",{
             method:"post",
           headers:{
               "Content-Type":"application/json",
@@ -129,7 +129,7 @@ function AllowDeduct()
       const amount=document.getElementById("deductamt").value;
       const time=document.getElementById("deducttime").value;
       //console.log(title);
-           fetch ('/hr/'+emp.hr+'/employees/'+empId+"/add-deduction",{
+           fetch ('https://server0826.herokuapp.com/hr/'+emp.hr+'/employees/'+empId+"/add-deduction",{
             method:"post",
           headers:{
               "Content-Type":"application/json",
@@ -155,7 +155,7 @@ function AllowDeduct()
 function deleteallow(e)
    {
       console.log(e.target.value)
-      fetch ('/hr/'+emp.hr+'/employees/'+empId+"/remove-allowance/"+e.target.value,{
+      fetch ('https://server0826.herokuapp.com/hr/'+emp.hr+'/employees/'+empId+"/remove-allowance/"+e.target.value,{
             method:"post",
           headers:{
               "Content-Type":"application/json",
@@ -205,7 +205,7 @@ function Printallow(){
 function deletededuct(e)
    {
       console.log(e.target.value)
-      fetch ('/hr/'+emp.hr+'/employees/'+empId+"/remove-deduction/"+e.target.value,{
+      fetch ('https://server0826.herokuapp.com/hr/'+emp.hr+'/employees/'+empId+"/remove-deduction/"+e.target.value,{
           method:"post",
           headers:{
               "Content-Type":"application/json",

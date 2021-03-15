@@ -12,7 +12,7 @@ function OpenAttendance(props) {
       const mark = (e)=>{
              
              //console.log(e.target.value)
-        fetch ("/hr/"+name._id+"/open-attendance" , {
+        fetch ("https://server0826.herokuapp.com/hr/"+name._id+"/open-attendance" , {
           method : "post" ,
           headers:{
             "Content-Type":"application/json",
@@ -38,7 +38,7 @@ function OpenAttendance(props) {
             const month=document.getElementById('month').value;
             const year=document.getElementById('year').value;
             // console.log(day)
-        fetch ("/hr/"+name._id+"/get-specific-attendance/"+day+"/"+month+"/"+year , {
+        fetch ("https://server0826.herokuapp.com/hr/"+name._id+"/get-specific-attendance/"+day+"/"+month+"/"+year , {
           method : "get" ,
           headers:{
             "Content-Type":"application/json"

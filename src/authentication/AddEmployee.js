@@ -15,7 +15,7 @@ const AddEmployee =()=>{
     function submit (e) {
 		e.preventDefault();
         console.log( state) ;
-        fetch(`hr/`+state._id+`/login`,{
+        fetch(`https://server0826.herokuapp.com/hr/`+state._id+`/login`,{
             method:"post",
             headers:{
                 "Content-Type":"application/json",

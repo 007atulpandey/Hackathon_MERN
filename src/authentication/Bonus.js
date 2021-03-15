@@ -16,7 +16,7 @@ const Bonus = () => {
         console.log("useEffect")
      },[]);
       const getData = async () =>{
-        const data = await fetch ("/hr/"+state._id+"/loan-reqs/0");
+        const data = await fetch ("https://server0826.herokuapp.com/hr/"+state._id+"/loan-reqs/0");
         const final = await data.json();
         console.log( final.loans) ;
         setData( final.loans);
@@ -25,7 +25,7 @@ const Bonus = () => {
       // /    hr/:hrId/leave-reqs/:leaveId/:status   : post
       const accept = (e)=>{
         console.log ( e.target.value)
-        fetch ("/hr/"+state._id+"/bonus-reqs/"+e.target.value+"/1" , {
+        fetch ("https://server0826.herokuapp.com/hr/"+state._id+"/bonus-reqs/"+e.target.value+"/1" , {
           method : "post" ,
           headers:{
             "Content-Type":"application/json",
@@ -52,7 +52,7 @@ const Bonus = () => {
       }
       const reject = (e)=>{
              
-        fetch ("/hr/"+state._id+"/bonus-reqs/"+e.target.value+"/2" , {
+        fetch ("https://server0826.herokuapp.com/hr/"+state._id+"/bonus-reqs/"+e.target.value+"/2" , {
           method : "post" ,
           headers:{
             "Content-Type":"application/json",

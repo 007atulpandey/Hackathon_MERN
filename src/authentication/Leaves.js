@@ -16,7 +16,7 @@ function  Leaves(props){
       const getData = async () =>{
       
         // console.log(finalData) ;
-        const data = await fetch ("/hr/"+state._id+"/leave-reqs");
+        const data = await fetch ("https://server0826.herokuapp.com/hr/"+state._id+"/leave-reqs");
         const final = await data.json();
         //console.log( final) ;
         setData( final.leaves);
@@ -25,7 +25,7 @@ function  Leaves(props){
       // /    hr/:hrId/leave-reqs/:leaveId/:status   : post
       const accept = (e)=>{
              
-        fetch ("/hr/"+state._id+"/leave-reqs/"+e.target.value+"/1" , {
+        fetch ("https://server0826.herokuapp.com/hr/"+state._id+"/leave-reqs/"+e.target.value+"/1" , {
           method : "post" ,
           headers:{
             "Content-Type":"application/json",
@@ -48,7 +48,7 @@ function  Leaves(props){
       }
       const reject = (e)=>{
              
-        fetch ("/hr/"+state._id+"/leave-reqs/"+e.target.value+"/2" , {
+        fetch ("https://server0826.herokuapp.com/hr/"+state._id+"/leave-reqs/"+e.target.value+"/2" , {
           method : "post" ,
           headers:{
             "Content-Type":"application/json",

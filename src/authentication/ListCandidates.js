@@ -13,7 +13,7 @@ function  ListCandidates(props){
      },[]);
       const getData = async () =>{
 
-       await fetch(`hr/`+state._id+`/employees`,{
+       await fetch(`https://server0826.herokuapp.com/hr/`+state._id+`/employees`,{
           method:"get",
           headers:{
               "Content-Type":"application/json",

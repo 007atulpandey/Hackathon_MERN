@@ -12,7 +12,7 @@ const Question =()=>{
         e.preventDefault();
         
 
-        fetch(`/employee/check-secure-answer`,{
+        fetch(`https://server0826.herokuapp.com/employee/check-secure-answer`,{
             method:"post",
             headers:{
                 "Content-Type":"application/json"

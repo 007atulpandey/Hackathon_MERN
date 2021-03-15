@@ -9,7 +9,7 @@ const BonusReq = () =>{
   
   const Lone  = async (e)=> {
 		e.preventDefault();
-    fetch("/employee/"+state._id+"/create-loan-req",{
+    fetch("https://server0826.herokuapp.com/employee/"+state._id+"/create-loan-req",{
             method:"post",
             headers:{
                 "Content-Type":"application/json",

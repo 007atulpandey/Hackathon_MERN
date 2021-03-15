@@ -11,7 +11,7 @@ function  Payroll(props){
         getData();
      },[]);
       const getData = async () =>{
-        fetch ("/hr/"+name._id+"/employees" , {
+        fetch ("https://server0826.herokuapp.com/hr/"+name._id+"/employees" , {
           method : "get" ,
           headers:{
             "Content-Type":"application/json",

@@ -17,7 +17,7 @@ const Addq =()=>{
         }
         else{
 
-        fetch(`/employee/` + state._id+`/add-security-question`,{
+        fetch(`https://server0826.herokuapp.com/employee/` + state._id+`/add-security-question`,{
             method:"post",
             headers:{
                 "Content-Type":"application/json",

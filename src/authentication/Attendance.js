@@ -9,7 +9,7 @@ const name= JSON.parse(localStorage.getItem('user'));
    const mark = (e)=>{
              console.log(name._id)
              //console.log(e.target.value)
-        fetch ("/employee/"+name._id+"/mark-attendance" , {
+        fetch ("https://server0826.herokuapp.com/employee/"+name._id+"/mark-attendance" , {
           method : "post" ,
           headers:{
             "Content-Type":"application/json",

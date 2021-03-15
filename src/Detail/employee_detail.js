@@ -20,7 +20,7 @@ function EmployeeDetail()
      },[])
      const getData = async () =>{
 
-        await fetch ('/hr/'+hrId+'/employees/'+empId,{
+        await fetch ('https://server0826.herokuapp.com/hr/'+hrId+'/employees/'+empId,{
             method:"get",
           headers:{
               "Content-Type":"application/json",

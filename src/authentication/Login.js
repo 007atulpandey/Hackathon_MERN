@@ -29,7 +29,7 @@ const Login =()=>{
             M.toast({html: "invalid email",classes:"#c62828 red darken-3"})
             return
 		}
-        fetch("/hr/login",{
+        fetch("https://server0826.herokuapp.com/hr/login",{
             method:"post",
             headers:{
                 "Content-Type":"application/json",
@@ -69,7 +69,7 @@ const Login =()=>{
             M.toast({html: "invalid email",classes:"#c62828 red darken-3"})
             return
 		}
-        fetch("/employee/login",{
+        fetch("https://server0826.herokuapp.com/employee/login",{
             method:"post",
             headers:{
                 "Content-Type":"application/json"

@@ -10,7 +10,7 @@ const LeaveReq = () =>{
   const [ reason , setReason ] = useState("");
   const Leave  = async (e)=> {
 		e.preventDefault();
-    fetch("/employee/"+state._id+"/create-leave-req",{
+    fetch("https://server0826.herokuapp.com/employee/"+state._id+"/create-leave-req",{
             method:"post",
             headers:{
                 "Content-Type":"application/json",
